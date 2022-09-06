@@ -1,0 +1,18 @@
+Project TodoList {
+  database_type: 'MySQL'
+}
+
+Table todoList as TL {
+  id int [pk, increment]
+  name varchar
+  created_at datetime [default: `now()`, note: "created time"]
+  archive boolean [not null, default: false]
+  note: "table 'list' contains list information"
+}
+Table todoItem as TI {
+  id int [pk, increment]
+  list_id int [ref: > todoList.id, not null]
+  content varchar
+  created_at datetime [default: `now()`, note: "created time"]
+  done boolean [not null, default: false]
+}
